@@ -38,6 +38,14 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYUP:
+            print('KEYUP')
+        if event.type == pygame.KEYDOWN:
+            print('KEYDOWN')
+        if event.type == pygame.K_LEFT:
+            print('KEYLEFT')
+        if event.type == pygame.K_RIGHT:
+            print('KEYRIGHT')
 
     object_put_to_screen(bg, 0, 0)
     object_put_to_screen(player_img, 300, 400)
