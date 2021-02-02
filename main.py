@@ -38,14 +38,16 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.KEYUP:
-            print('KEYUP')
+        # i don't understand how to keypress
         if event.type == pygame.KEYDOWN:
-            print('KEYDOWN')
-        if event.type == pygame.K_LEFT:
-            print('KEYLEFT')
-        if event.type == pygame.K_RIGHT:
-            print('KEYRIGHT')
+            if event.type == pygame.K_UP:
+                print('KEYUP')
+            if event.type == pygame.K_DOWN:
+                print('KEYDOWN')
+            if event.type == pygame.K_LEFT:
+                print('KEYLEFT')
+            if event.type == pygame.K_RIGHT:
+                print('KEYRIGHT')
 
     object_put_to_screen(bg, 0, 0)
     object_put_to_screen(player_img, 300, 400)
