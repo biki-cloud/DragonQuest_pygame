@@ -18,9 +18,9 @@ pygame.display.set_icon(icon)
 
 bg = pygame.image.load(os.path.join('field', 'field1.jpg'))
 
-yusha_img_path = os.path.join('human', 'yusha.png')
-automatic_set_img_size(yusha_img_path, screen)
-player_img = pygame.image.load(yusha_img_path)
+braver_img_path = os.path.join('human', 'braver.png')
+automatic_set_img_size(braver_img_path, screen)
+player_img = pygame.image.load(braver_img_path)
 
 slime_img_path = os.path.join('monster', 'slime.png')
 automatic_set_img_size(slime_img_path, screen)
