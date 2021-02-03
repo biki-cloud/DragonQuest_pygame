@@ -1,55 +1,54 @@
-import pygame
+import pygame as pg
+
 from handle_image import resize
-import os
+from set import SCREEN_WIDTH, SCREEN_HEIGHT, BRAVER_IMG_PATH, SLIME_IMG_PATH, FIELD_IMG_PATH
 
 
-def automatic_set_img_size(img_path: str, screen):
-    ratio = 5
-    h, w = int(screen.get_height() / ratio), int(screen.get_width() / ratio)
+def automatic_set_img_size(img_path: str, height: int, width: int, ratio: object = 5) -> None:
+    h, w = (int(height / ratio), int(width / ratio))
     resize(img_path=img_path, x=h, y=w)
 
 
-pygame.init()
-
-screen = pygame.display.set_mode((800, 800))
-pygame.display.set_caption('Dragon quest monster')
-icon = pygame.image.load(os.path.join('monster', 'slime.png'))
-pygame.display.set_icon(icon)
-
-bg = pygame.image.load(os.path.join('field', 'field1.jpg'))
-
-braver_img_path = os.path.join('human', 'braver.png')
-automatic_set_img_size(braver_img_path, screen)
-player_img = pygame.image.load(braver_img_path)
-
-slime_img_path = os.path.join('monster', 'slime.png')
-automatic_set_img_size(slime_img_path, screen)
-enemy_img = pygame.image.load(slime_img_path)
-
-
-def object_put_to_screen(img, x, y):
+def put_to_screen(img, x, y):
     screen.blit(img, (x, y))
 
+
+pg.init()
+
+screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pg.display.set_caption('Dragon quest monster')
+
+icon = pg.image.load(SLIME_IMG_PATH)
+pg.display.set_icon(icon)
+
+bg_img = pg.image.load(FIELD_IMG_PATH)
+
+automatic_set_img_size(BRAVER_IMG_PATH, screen.get_height(), screen.get_width())
+braver_img = pg.image.load(BRAVER_IMG_PATH)
+
+automatic_set_img_size(SLIME_IMG_PATH, screen.get_height(), screen.get_width())
+enemy_img = pg.image.load(SLIME_IMG_PATH)
 
 running: bool = True
 while running:
     screen.fill((0, 0, 0))
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
             running = False
         # i don't understand how to keypress
-        if event.type == pygame.KEYDOWN:
-            if event.type == pygame.K_UP:
+        if event.type == pg.KEYDOWN:
+            print('key press')
+            if event.key == pg.K_UP:
                 print('KEYUP')
-            if event.type == pygame.K_DOWN:
+            if event.key == pg.K_DOWN:
                 print('KEYDOWN')
-            if event.type == pygame.K_LEFT:
+            if event.key == pg.K_LEFT:
                 print('KEYLEFT')
-            if event.type == pygame.K_RIGHT:
+            if event.key == pg.K_RIGHT:
                 print('KEYRIGHT')
 
-    object_put_to_screen(bg, 0, 0)
-    object_put_to_screen(player_img, 300, 400)
-    object_put_to_screen(enemy_img, 500, 700)
-    pygame.display.update()
+    put_to_screen(bg_img, 0, 0)
+    put_to_screen(braver_img, 300, 400)
+    put_to_screen(enemy_img, 500, 700)
+    pg.display.update()
