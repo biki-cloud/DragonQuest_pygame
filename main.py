@@ -3,7 +3,7 @@ import pygame
 from allies.human import Braver
 from enemy.monster import Slime
 from handle_image import resize
-from set import SCREEN_WIDTH, SCREEN_HEIGHT, BRAVER_IMG_PATH, SLIME_IMG_PATH, FIELD_IMG_PATH
+from set import SCREEN_WIDTH, SCREEN_HEIGHT, BRAVER_IMG_PATH, SLIME_IMG_PATH, FIELD_IMG_PATH, COMBAT_IMG_PATH
 
 
 def put_to_screen(img, x, y):
@@ -28,7 +28,7 @@ slime = Slime('kororo', SLIME_IMG_PATH, screen.get_height(), screen.get_width())
 running: bool = True
 while running:
     screen.fill((0, 0, 0))
-
+    bg = bg_img
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -40,10 +40,14 @@ while running:
                 print('key down')
             if event.key == pygame.K_LEFT:
                 print('key left')
+
             if event.key == pygame.K_RIGHT:
                 print('key right')
+                resize(COMBAT_IMG_PATH, screen.get_height(), screen.get_width())
+                bg_img2 = pygame.image.load(COMBAT_IMG_PATH)
+                bg = bg_img2
 
-    put_to_screen(bg_img, 0, 0)
-    put_to_screen(braver.pg_img, 300, 400)
-    put_to_screen(slime.pg_img, 500, 700)
-    pygame.display.update()
+        put_to_screen(bg_img, 0, 0)
+        put_to_screen(braver.pg_img, 300, 400)
+        put_to_screen(slime.pg_img, 500, 700)
+        pygame.display.update()
