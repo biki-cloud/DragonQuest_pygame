@@ -2,7 +2,6 @@ import pygame
 
 from allies.human import Braver
 from enemy.monster import Slime
-from handle_image import resize
 from field.background import BackGround
 from set import SCREEN_WIDTH, SCREEN_HEIGHT, BRAVER_IMG_PATH, SLIME_IMG_PATH, FIELD_IMG_PATH, COMBAT_IMG_PATH
 
@@ -36,16 +35,20 @@ while is_running:
             print('key press')
             if event.key == pygame.K_UP:
                 print('key up')
+                braver.up()
             if event.key == pygame.K_DOWN:
                 print('key down')
+                braver.down()
             if event.key == pygame.K_LEFT:
                 print('key left')
+                braver.left()
             if event.key == pygame.K_RIGHT:
                 print('key right')
-                combat = BackGround(COMBAT_IMG_PATH, screen.get_height(), screen.get_width() )
+                braver.right()
+                combat = BackGround(COMBAT_IMG_PATH, screen.get_height(), screen.get_width())
                 back_ground = combat.pg_img
 
         put_to_screen(back_ground, 0, 0)
-        put_to_screen(braver.pg_img, 300, 400)
+        put_to_screen(braver.pg_img, braver.x, braver.y)
         put_to_screen(slime.pg_img, 500, 700)
         pygame.display.update()
