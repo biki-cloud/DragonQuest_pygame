@@ -24,6 +24,8 @@ if __name__ == '__main__':
 
     field = BackGround(FIELD_IMG_PATH, screen.get_height(), screen.get_width())
 
+    combat = BackGround(COMBAT_IMG_PATH, screen.get_height(), screen.get_width())
+
     braver = Braver('mike', BRAVER_IMG_PATH, screen.get_height(), screen.get_width())
 
     slime = Slime('kororo', SLIME_IMG_PATH, screen.get_height(), screen.get_width())
@@ -36,7 +38,6 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 is_running = False
             if event.type == pygame.KEYDOWN:
-                logging.debug('key press')
                 if event.key == pygame.K_UP:
                     logging.debug('key up')
                     braver.up()
@@ -49,7 +50,6 @@ if __name__ == '__main__':
                 if event.key == pygame.K_RIGHT:
                     logging.debug('key right')
                     braver.right()
-                    combat = BackGround(COMBAT_IMG_PATH, screen.get_height(), screen.get_width())
                     back_ground = combat.pg_img
 
             put_to_screen(back_ground, 0, 0)
