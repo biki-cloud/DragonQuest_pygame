@@ -18,6 +18,7 @@ pygame.display.set_caption('Dragon quest monster')
 icon = pygame.image.load(SLIME_IMG_PATH)
 pygame.display.set_icon(icon)
 print('master')
+print('fff')
 resize(FIELD_IMG_PATH, screen.get_height(), screen.get_width())
 bg_img = pygame.image.load(FIELD_IMG_PATH)
 
