@@ -25,13 +25,13 @@ braver = Braver('mike', BRAVER_IMG_PATH, screen.get_height(), screen.get_width()
 
 slime = Slime('kororo', SLIME_IMG_PATH, screen.get_height(), screen.get_width())
 
-running: bool = True
-while running:
+is_running: bool = True
+while is_running:
     screen.fill((0, 0, 0))
     bg = bg_img
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            is_running = False
         if event.type == pygame.KEYDOWN:
             print('key press')
             if event.key == pygame.K_UP:
@@ -40,7 +40,6 @@ while running:
                 print('key down')
             if event.key == pygame.K_LEFT:
                 print('key left')
-
             if event.key == pygame.K_RIGHT:
                 print('key right')
                 resize(COMBAT_IMG_PATH, screen.get_height(), screen.get_width())
