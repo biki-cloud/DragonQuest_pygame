@@ -8,6 +8,11 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="/Python Console">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/allies/human.py">
           <value>
             <PaintGroupHighlightMap />
@@ -29,6 +34,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/human/human.py">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/log/get_log.py">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/log/logging">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/log/set_log.py">
           <value>
             <PaintGroupHighlightMap />
           </value>
