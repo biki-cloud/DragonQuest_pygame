@@ -3,8 +3,9 @@ import pygame
 from allies.human import Braver
 from enemy.monster import Slime
 from field.background import BackGround
+from building.building_object import Building
 from log import get_log
-from set import SCREEN_WIDTH, SCREEN_HEIGHT, BRAVER_IMG_PATH, SLIME_IMG_PATH, FIELD_IMG_PATH, COMBAT_IMG_PATH
+from set import SCREEN_WIDTH, SCREEN_HEIGHT, BRAVER_IMG_PATH, SLIME_IMG_PATH, FIELD_IMG_PATH, COMBAT_IMG_PATH, CARVE_IMG_PATH
 
 
 def put_to_screen(img, x, y):
@@ -23,8 +24,9 @@ if __name__ == '__main__':
     pygame.display.set_icon(icon)
 
     field = BackGround(FIELD_IMG_PATH, screen.get_height(), screen.get_width())
-
     combat = BackGround(COMBAT_IMG_PATH, screen.get_height(), screen.get_width())
+
+    carve = Building(CARVE_IMG_PATH, screen.get_height(), screen.get_width())
 
     braver = Braver('mike', BRAVER_IMG_PATH, screen.get_height(), screen.get_width())
 
@@ -53,6 +55,7 @@ if __name__ == '__main__':
                     back_ground = combat.pg_img
 
             put_to_screen(back_ground, 0, 0)
+            put_to_screen(carve.pg_img, 150, 100)
             put_to_screen(braver.pg_img, braver.x, braver.y)
             put_to_screen(slime.pg_img, 500, 700)
             pygame.display.update()
