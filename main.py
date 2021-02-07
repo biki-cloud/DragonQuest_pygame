@@ -1,9 +1,9 @@
 import pygame
 
-from allies.human import Braver
-from enemy.monster import Slime
-from field.background import BackGround
-from building.building_object import Building
+from human import Braver
+from monster import Slime
+from field import BackGround
+from building import Building
 from log import get_log
 from set import SCREEN_WIDTH, SCREEN_HEIGHT, BRAVER_IMG_PATH, SLIME_IMG_PATH, FIELD_IMG_PATH, COMBAT_IMG_PATH, CARVE_IMG_PATH
 

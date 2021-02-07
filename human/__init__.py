@@ -1,4 +1,4 @@
-from creature.character import Character
+from character import Character
 
 
 class Braver(Character):

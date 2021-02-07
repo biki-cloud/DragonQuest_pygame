@@ -1,4 +1,4 @@
-from creature.character import Character
+from character import Character
 
 class Slime(Character):
     def __init__(self, name, img_path, screen_h, screen_w):
