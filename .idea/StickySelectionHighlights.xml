@@ -18,7 +18,17 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/building/__init__.py">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/building/building_object.py">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/character/__init__.py">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -34,6 +44,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/handle_image.py">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/human/__init__.py">
           <value>
             <PaintGroupHighlightMap />
           </value>
@@ -59,6 +74,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/main.py">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/monster/__init__.py">
           <value>
             <PaintGroupHighlightMap />
           </value>

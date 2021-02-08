@@ -2,7 +2,7 @@ from character import Character
 
 
 class Braver(Character):
-    def __init__(self, name, img_path, screen_h, screen_w, x: int = None, y: int = None, stride: int = None):
+    def __init__(self, name: str, img_path: str, screen_h: int, screen_w: int, x: int = None, y: int = None, stride: int = None):
         super().__init__(name, img_path, screen_h, screen_w)
         self._stride = stride if stride is not None else 20
         self._x = x if x is not None else (screen_w / 2)
