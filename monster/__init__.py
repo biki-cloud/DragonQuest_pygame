@@ -2,7 +2,7 @@ from character import Character
 
 
 class Slime(Character):
-    def __init__(self, name, img_path, screen_h, screen_w):
+    def __init__(self, name: str, img_path: str, screen_h: int, screen_w: int):
         super().__init__(name, img_path, screen_h, screen_w)
         self._monster_rank = 1
         self._attack = 1

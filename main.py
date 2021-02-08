@@ -53,7 +53,6 @@ if __name__ == '__main__':
                     logging.debug('key right')
                     braver.right()
                     back_ground = combat.pg_img
-
             put_to_screen(back_ground, 0, 0)
             put_to_screen(carve.pg_img, 150, 100)
             put_to_screen(braver.pg_img, braver.x, braver.y)
