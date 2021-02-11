@@ -18,7 +18,7 @@ if __name__ == '__main__':
     logging = get_log.get_logger()
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption('Dragon quest monster')
+    pygame.display.set_caption('Dragon Quest Monster')
 
     icon = pygame.image.load(SLIME_IMG_PATH)
     pygame.display.set_icon(icon)
@@ -30,7 +30,7 @@ if __name__ == '__main__':
 
     braver = Braver('mike', BRAVER_IMG_PATH, screen.get_height(), screen.get_width())
 
-    slime = Slime('kororo', SLIME_IMG_PATH, screen.get_height(), screen.get_width())
+    slime = Slime('riml', SLIME_IMG_PATH, screen.get_height(), screen.get_width())
 
     is_running: bool = True
     frame_count = 0
