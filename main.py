@@ -15,7 +15,7 @@ def put_to_screen(img, x, y):
 if __name__ == '__main__':
 
     pygame.init()
-    logging = get_log.get_logger()
+    log = get_log.get_logger()
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption('Dragon Quest Monster')
@@ -36,25 +36,27 @@ if __name__ == '__main__':
     frame_count = 0
     back_ground = field.pg_img
     while is_running:
-        logging.debug(frame_count)
+        # logging.debug(frame_count)
         screen.fill((0, 0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 is_running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    logging.debug('key up')
+                    log.debug('key up')
                     braver.up()
                 if event.key == pygame.K_DOWN:
-                    logging.debug('key down')
+                    log.debug('key down')
                     braver.down()
                 if event.key == pygame.K_LEFT:
-                    logging.debug('key left')
+                    log.debug('key left')
                     braver.left()
                 if event.key == pygame.K_RIGHT:
-                    logging.debug('key right')
+                    log.debug('key right')
                     braver.right()
                     back_ground = combat.pg_img
+            if (braver.x, braver.y) == carve.center:
+                log.debug('enter to carve!!!')
             put_to_screen(back_ground, 0, 0)
             put_to_screen(carve.pg_img, 150, 100)
             put_to_screen(braver.pg_img, braver.x, braver.y)

@@ -1,3 +1,5 @@
+from typing import Tuple
+
 import pygame
 
 from handle_image import resize
@@ -8,6 +10,7 @@ class Building(object):
         self._img_path = building_img_path
         resize(self.img_path, int(screen_h / 10), int(screen_w / 10))
         self._pg_img = pygame.image.load(self.img_path)
+        self._center = self._pg_img.get_size()
 
     @property
     def img_path(self) -> str:
@@ -16,3 +19,7 @@ class Building(object):
     @property
     def pg_img(self) -> pygame.surface:
         return self._pg_img
+
+    @property
+    def center(self) -> Tuple[float, float]:
+        return self._center
