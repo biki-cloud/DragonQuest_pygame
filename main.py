@@ -33,9 +33,11 @@ if __name__ == '__main__':
     slime = Slime('kororo', SLIME_IMG_PATH, screen.get_height(), screen.get_width())
 
     is_running: bool = True
+    frame_count = 0
+    back_ground = field.pg_img
     while is_running:
+        logging.debug(frame_count)
         screen.fill((0, 0, 0))
-        back_ground = field.pg_img
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 is_running = False
@@ -58,3 +60,4 @@ if __name__ == '__main__':
             put_to_screen(braver.pg_img, braver.x, braver.y)
             put_to_screen(slime.pg_img, 500, 700)
             pygame.display.update()
+        frame_count += 1
