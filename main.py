@@ -27,6 +27,7 @@ if __name__ == '__main__':
     combat = BackGround(COMBAT_IMG_PATH, screen.get_height(), screen.get_width())
 
     carve = Building(CARVE_IMG_PATH, screen.get_height(), screen.get_width())
+    carve.x, carve.y = 150, 100
 
     braver = Braver('mike', BRAVER_IMG_PATH, screen.get_height(), screen.get_width())
 
@@ -55,10 +56,12 @@ if __name__ == '__main__':
                     log.debug('key right')
                     braver.right()
                     back_ground = combat.pg_img
-            if (braver.x, braver.y) == carve.center:
+            log.debug(f'braber: {braver.x}, {braver.y}')
+            log.debug(f'carve: {carve.x}, {carve.y}')
+            if (braver.x, braver.y) == (carve.x, carve.y):
                 log.debug('enter to carve!!!')
             put_to_screen(back_ground, 0, 0)
-            put_to_screen(carve.pg_img, 150, 100)
+            put_to_screen(carve.pg_img, carve.x, carve.y)
             put_to_screen(braver.pg_img, braver.x, braver.y)
             put_to_screen(slime.pg_img, 500, 700)
             pygame.display.update()
