@@ -1,11 +1,12 @@
 import pygame
 
-from human import Braver
-from monster import Slime
-from field import BackGround
 from building import Building
+from field import BackGround
+from human import Braver
 from log import get_log
-from set import SCREEN_WIDTH, SCREEN_HEIGHT, BRAVER_IMG_PATH, SLIME_IMG_PATH, FIELD_IMG_PATH, COMBAT_IMG_PATH, CARVE_IMG_PATH
+from monster import Slime
+from set import SCREEN_WIDTH, SCREEN_HEIGHT, BRAVER_IMG_PATH, SLIME_IMG_PATH, FIELD_IMG_PATH, COMBAT_IMG_PATH, \
+    CARVE_IMG_PATH
 
 
 def put_to_screen(img, x, y):
@@ -37,7 +38,7 @@ if __name__ == '__main__':
     frame_count = 0
     back_ground = field.pg_img
     while is_running:
-        # logging.debug(frame_count)
+        # log.debug(f'frame count: {frame_count}')
         screen.fill((0, 0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -56,7 +57,7 @@ if __name__ == '__main__':
                     log.debug('key right')
                     braver.right()
                     back_ground = combat.pg_img
-            log.debug(f'braber: {braver.x}, {braver.y}')
+            log.debug(f'braver: {braver.x}, {braver.y}')
             log.debug(f'carve: {carve.x}, {carve.y}')
             if (braver.x, braver.y) == (carve.x, carve.y):
                 log.debug('enter to carve!!!')
