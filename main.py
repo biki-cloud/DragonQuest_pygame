@@ -1,12 +1,12 @@
 import pygame
 
-from building import Building
-from field import BackGround
-from human import Braver
+from config import get_config_json, get_img_path, SCREEN_H, SCREEN_W
 from log import get_log
-from monster import Slime
-from set import SCREEN_WIDTH, SCREEN_HEIGHT, BRAVER_IMG_PATH, SLIME_IMG_PATH, FIELD_IMG_PATH, COMBAT_IMG_PATH, \
-    CARVE_IMG_PATH
+from objects.background.combat import Combat
+from objects.background.glass import Glass
+from objects.building.carve import Carve
+from objects.creature.human.braver import Braver
+from objects.creature.monster.slime import Slime
 
 
 def put_to_screen(img, x, y):
@@ -15,28 +15,32 @@ def put_to_screen(img, x, y):
 
 if __name__ == '__main__':
 
+    config: dict = get_config_json()
+
     pygame.init()
     log = get_log.get_logger()
 
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    screen = pygame.display.set_mode((SCREEN_W, SCREEN_H))
+
     pygame.display.set_caption('Dragon Quest Monster')
 
-    icon = pygame.image.load(SLIME_IMG_PATH)
+    icon = pygame.image.load(get_img_path("slime.png"))
     pygame.display.set_icon(icon)
 
-    field = BackGround(FIELD_IMG_PATH, screen.get_height(), screen.get_width())
-    combat = BackGround(COMBAT_IMG_PATH, screen.get_height(), screen.get_width())
+    glass = Glass()
+    combat = Combat()
 
-    carve = Building(CARVE_IMG_PATH, screen.get_height(), screen.get_width())
+    carve = Carve()
     carve.x, carve.y = 150, 100
 
-    braver = Braver('mike', BRAVER_IMG_PATH, screen.get_height(), screen.get_width())
+    braver = Braver('mike')
+    braver.x, braver.y = 100, 100
 
-    slime = Slime('riml', SLIME_IMG_PATH, screen.get_height(), screen.get_width())
+    slime = Slime('riml')
 
     is_running: bool = True
     frame_count = 0
-    back_ground = field.pg_img
+    back_ground = glass.pg_img
     while is_running:
         # log.debug(f'frame count: {frame_count}')
         screen.fill((0, 0, 0))

@@ -1,18 +1,29 @@
 import pygame
 
-from handle_image import automatic_set_img_size
+from img_handler import automatic_set_img_size
+from config import SCREEN_H, SCREEN_W
 
 
-class PygameObject(object):
-    def __init__(self, name: str, img_path: str, screen_h: int, screen_w: int, x: int = None, y: int = None,
+class Creature(object):
+    """
+    生き物の親クラス
+    """
+    def __init__(self, name: str, img_path: str, x: int = None, y: int = None,
                  stride: int = None):
+        """
+        :param name:
+        :param img_path:
+        :param x:
+        :param y:
+        :param stride:
+        """
         self._name = name
         self._img_path = img_path
-        automatic_set_img_size(img_path, screen_h, screen_w)
+        automatic_set_img_size(img_path, SCREEN_H, SCREEN_W)
         self._pg_img = pygame.image.load(img_path)
         self._stride = stride if stride is not None else 20
-        self._x = x if x is not None else (screen_w / 2)
-        self._y = y if y is not None else (screen_h / 2)
+        self._x = x if x is not None else (SCREEN_W / 2)
+        self._y = y if y is not None else (SCREEN_H / 2)
 
     def up(self):
         self._y -= self._stride

@@ -1,10 +1,11 @@
-from pygame_object import PygameObject
+from objects.creature import Creature
+from config import get_img_path
 
-
-class Slime(PygameObject):
-    def __init__(self, name: str, img_path: str, screen_h: int, screen_w: int, x: int = None, y: int = None,
+class Slime(Creature):
+    def __init__(self, name: str, x: int = None, y: int = None,
                  stride: int = None):
-        super().__init__(name, img_path, screen_h, screen_w, x, y, stride)
+        img_path = get_img_path("slime.png")
+        super().__init__(name, img_path, x, y, stride)
         self._monster_rank = 1
         self._attack = 1
 

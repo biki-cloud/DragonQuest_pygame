@@ -1,12 +1,13 @@
 import pygame
 
-from handle_image import resize
+from img_handler import resize
+from config import SCREEN_H, SCREEN_W
 
 
 class BackGround(object):
-    def __init__(self, img_path: str, screen_h: int, screen_w: int):
+    def __init__(self, img_path: str):
         self._img_path = img_path
-        resize(self.img_path, screen_h, screen_w)
+        resize(self.img_path, SCREEN_H, SCREEN_W)
         self._pg_img = pygame.image.load(self.img_path)
 
     @property

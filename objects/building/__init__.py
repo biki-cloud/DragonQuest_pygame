@@ -2,13 +2,14 @@ from typing import Tuple
 
 import pygame
 
-from handle_image import resize
+from img_handler import resize
+from config import SCREEN_H, SCREEN_W
 
 
 class Building(object):
-    def __init__(self, building_img_path: str, screen_h: int, screen_w: int):
+    def __init__(self, building_img_path: str):
         self._img_path = building_img_path
-        resize(self.img_path, int(screen_h / 10), int(screen_w / 10))
+        resize(self.img_path, int(SCREEN_H / 10), int(SCREEN_W / 10))
         self._pg_img = pygame.image.load(self.img_path)
         self._center = self._pg_img.get_size()
         self._x = None
