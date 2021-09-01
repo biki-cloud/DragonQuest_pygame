@@ -1,21 +1,23 @@
 import pygame
 
-from img_handler import automatic_set_img_size
 from config import SCREEN_H, SCREEN_W
+from img_handler import automatic_set_img_size
 
 
 class Creature(object):
     """
     生き物の親クラス
+    子クラスにhumanやmonsterがある。
     """
+
     def __init__(self, name: str, img_path: str, x: int = None, y: int = None,
                  stride: int = None):
         """
-        :param name:
-        :param img_path:
-        :param x:
-        :param y:
-        :param stride:
+        :param name: 生き物の名前
+        :param img_path: 画像のパス
+        :param x: スクリーンのどの場所に配置するか
+        :param y: スクリーンのどの場所に配置するか
+        :param stride: 動く場合の一歩の大きさ
         """
         self._name = name
         self._img_path = img_path
@@ -25,16 +27,20 @@ class Creature(object):
         self._x = x if x is not None else (SCREEN_W / 2)
         self._y = y if y is not None else (SCREEN_H / 2)
 
-    def up(self):
+    """
+    up, down, left, right関数は呼び出すとキャラクターが動く。
+    """
+
+    def up(self) -> None:
         self._y -= self._stride
 
-    def down(self):
+    def down(self) -> None:
         self._y += self._stride
 
-    def left(self):
+    def left(self) -> None:
         self._x -= self._stride
 
-    def right(self):
+    def right(self) -> None:
         self._x += self._stride
 
     @property

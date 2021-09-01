@@ -2,8 +2,8 @@ from typing import Tuple
 
 import pygame
 
-from img_handler import resize
 from config import SCREEN_H, SCREEN_W
+from img_handler import resize
 
 
 class Building(object):

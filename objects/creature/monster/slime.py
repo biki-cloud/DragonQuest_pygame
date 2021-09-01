@@ -1,5 +1,6 @@
-from objects.creature import Creature
 from config import get_img_path
+from objects.creature import Creature
+
 
 class Slime(Creature):
     def __init__(self, name: str, x: int = None, y: int = None,

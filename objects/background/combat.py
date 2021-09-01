@@ -1,5 +1,5 @@
-from objects.background import BackGround
 from config import get_img_path
+from objects.background import BackGround
 
 
 class Combat(BackGround):
