@@ -7,6 +7,7 @@ from objects.background.glass import Glass
 from objects.building.carve import Carve
 from objects.creature.human import Braver
 from objects.creature.monster.slime import Slime
+from typing import List
 
 """
 理想
@@ -43,6 +44,21 @@ def load_image(filename) -> pygame.Surface:
 
 
 def get_image(sheet, x, y, width, height, use_color_key=False) -> pygame.Surface:
+    """
+    キャラクター画像をうまく使用するための関数
+
+    Args:
+        sheet: キャラクター画像のSurface
+        x: キャラクター画像の中のどの位置のキャラクターにするかのx座標
+        y: キャラクター画像の中のどの位置のキャラクターにするかのy座標
+        width: キャラクター画像のサイズ
+        height: キャラクター画像のサイズ
+        use_color_key: キャラクター画像の背景を同じ色にするか
+
+    Returns:
+        pygame.Surface
+
+    """
     image = pygame.Surface([width, height])
     image.blit(sheet, (0, 0), (x, y, width, height))
     image = image.convert_alpha()
@@ -60,23 +76,30 @@ DIR_UP = 3
 ANIME_WAIT_COUNT = 24
 
 
+# pygame.sprite.Spriteは特定の画像をゲーム画面に表示するためのシンプルな基底クラス
 class Player(pygame.sprite.Sprite):
     def __init__(self, filename):
         pygame.sprite.Sprite.__init__(self)
         sheet = load_image(filename)
-        self.images = [[], [], [], []]
+        self.images: List[List[pygame.Surface]] = [[], [], [], []]
 
+        # キャラクター画像縦４列
         for row in range(0, 4):
+            # キャラクター画像横列
+            # 0 -> 下向き, 1 -> 右向き, 2 -> 左向き, 1 -> 右向き
             for col in [0, 1, 2, 1]:
                 self.images[row].append(get_image(sheet, 0 + 32 * col, 0 + 32 * row, 32, 32, True))
 
         self.image = self.images[DIR_DOWN][0]
+        # 位置情報を取得
         self.rect = self.image.get_rect()
+        # 位置をスクリーンの真ん中に持ってくる
         self.rect.center = (SCREEN_RECT.width // 2, SCREEN_RECT.height // 2)
         self.frame = 0
         self.anime_count = 0
         self.dir = DIR_DOWN
 
+    # sprite.Spriteクラスのupdateをオーバーライドする
     def update(self):
         self.anime_count += 1
         if self.anime_count >= ANIME_WAIT_COUNT:
@@ -124,9 +147,16 @@ if __name__ == '__main__':
     pygame.display.set_caption('Dragon Quest Monster')
 
     player = Player("charecter.png")
+
+    # 模写先範囲の情報を取得するクラス
     group = pygame.sprite.RenderUpdates()
+
+    # Spriteクラスを継承したクラスをaddする
     group.add(player)
+
     field_map = Map(screen, "field01.map")
+
+    # 時間を管理するオブジェクト
     clock = pygame.time.Clock()
 
     log = get_log.get_logger()
