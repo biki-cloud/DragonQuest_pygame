@@ -122,11 +122,10 @@ class Player(pygame.sprite.Sprite):
 
 class Map:
     def __init__(self, screen, filename):
-        # 列の個数と行の個数を定義する
-        self.ncol = 20
-        self.nrow = 15
+        self.ncol = 20  # field01.mapの横の行数
+        self.nrow = 15  # field01.mapの縦の行数
         self.screen = screen
-        self.map_data = []
+        self.map_data = []  # field01.mapの中身をネスト配列として保持する
         self.read_map(filename)
         self.sheet0 = load_image("./maptip1.png")
         self.sheet1 = load_image("./river.png")
