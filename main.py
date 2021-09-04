@@ -92,6 +92,7 @@ class Player(pygame.sprite.Sprite):
                 # character.pngのキャラクターたちを全てself.imagesに入れる(画像オブジェクトとして)
                 self.images[row].append(get_image(sheet, 0 + 32 * col, 0 + 32 * row, 32, 32, True))
 
+        # キャラクターの正面画像としてセットする
         self.image = self.images[DIR_DOWN][0]
         # 位置情報を取得
         self.rect = self.image.get_rect()
@@ -99,10 +100,17 @@ class Player(pygame.sprite.Sprite):
         self.rect.center = (SCREEN_RECT.width // 2, SCREEN_RECT.height // 2)
         self.frame = 0
         self.anime_count = 0
+        # 方向を初期化
         self.dir = DIR_DOWN
 
     # sprite.Spriteクラスのupdateをオーバーライドする
     def update(self):
+        """
+        1秒間に何回もこのupdateが呼ばれる
+        self.frameがupdateが何回か呼ばれたら１増える。
+        マックス４まで。理由は[0, 1, 2, 1]でself.frameが回っていく。
+        0 -> 下向き, 1 -> 右向き, 2 -> 左向き, 1 -> 右向き
+        """
         self.anime_count += 1
         if self.anime_count >= ANIME_WAIT_COUNT:
             self.anime_count = 0
