@@ -1,3 +1,5 @@
+from typing import List
+
 import pygame
 
 from config import get_config_json, get_img_path
@@ -7,7 +9,6 @@ from objects.background.glass import Glass
 from objects.building.carve import Carve
 from objects.creature.human import Braver
 from objects.creature.monster.slime import Slime
-from typing import List
 
 """
 理想
@@ -88,6 +89,7 @@ class Player(pygame.sprite.Sprite):
             # キャラクター画像横列
             # 0 -> 下向き, 1 -> 右向き, 2 -> 左向き, 1 -> 右向き
             for col in [0, 1, 2, 1]:
+                # character.pngのキャラクターたちを全てself.imagesに入れる(画像オブジェクトとして)
                 self.images[row].append(get_image(sheet, 0 + 32 * col, 0 + 32 * row, 32, 32, True))
 
         self.image = self.images[DIR_DOWN][0]
@@ -112,6 +114,7 @@ class Player(pygame.sprite.Sprite):
 
 class Map:
     def __init__(self, screen, filename):
+        # 列の個数と行の個数を定義する
         self.ncol = 20
         self.nrow = 15
         self.screen = screen
@@ -120,20 +123,37 @@ class Map:
         self.sheet0 = load_image("./maptip1.png")
         self.sheet1 = load_image("./river.png")
         self.images = []
+        # river.pngの０行目で４列目の画像を追加
         self.images.append([self.sheet1, 0, 4])
+        # maptip1.pngの０行目で０列目の画像を追加
         self.images.append([self.sheet0, 0, 0])
 
     def read_map(self, filename):
+        """
+        field01.mapの中身をネスト配列で格納する
+        """
         with open("field01.map") as fi:
+            # 一番上の行の列数、行数を読み込みself.ncol, self.nrowに入れる
             line = fi.readline()
             self.ncol, self.nrow = [int(tok) for tok in line.split(",")]
+
+            # csvのような中身をネスト配列としてself.map_dataに入れる
             for row in range(self.nrow):
                 line = fi.readline()
                 self.map_data.append([int(tok) for tok in line.split(",")])
 
     def draw(self):
+        # 行と列の分だけ背景画像を表示
+        # row_data -> [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0]
         for row, row_data in enumerate(self.map_data):
             for col, col_data in enumerate(row_data):
+                """
+                sheet->画像オブジェクト
+                x, y -> 画像オブジェクトの何行目(x)の何列目(y)
+                screenに背景画像を転送する, 転送先、転送元
+                sheet -> screenに描写する画像オブジェクト
+                blit(画像オブジェクト, 画像オブジェクトをscreenのどこに配置するか(x,y), 配置する画像オブジェクトのどの位置の画像を配置するか、32,32は配置する画像のサイズ) 
+                """
                 sheet, x, y = self.images[col_data]
                 screen.blit(sheet, (col * 32, row * 32), (x * 32, y * 32, 32, 32))
 
@@ -179,6 +199,7 @@ if __name__ == '__main__':
     while True:
         clock.tick(60)
         screen.fill((0, 255, 0))
+        # playerの前に背景を表示する必要がある。
         field_map.draw()
         group.update()
         group.draw(screen)  # 画面にキャラが表示される
